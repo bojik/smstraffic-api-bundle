@@ -1,0 +1,17 @@
+{
+    "name": "devguru/smstraffic-api-bundle",
+    "description": "SMS Traffic API implementation",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Rodionov",
+            "email": "web@devgu.ru"
+        }
+    ],
+    "require": {
+        "devguru/smstraffic-api": "dev-master"
+    },
+    "autoload":     {
+        "psr-4": { "DevGuru\\SmsTrafficApiBundle\\": "src/DevGuru/SmsTrafficApiBundle" }
+    }
+}
