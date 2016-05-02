@@ -2,6 +2,8 @@
 
 namespace DevGuru\SmsTrafficApiBundle\DependencyInjection;
 
+use DevGuru\SmsTrafficApi\Client;
+use DevGuru\SmsTrafficApiBundle\Config\SmsTrafficApiConfig;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -20,9 +22,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('dev_guru_sms_traffic_api');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode(SmsTrafficApiConfig::PARAM_LOGIN)->isRequired()->end()
+                ->scalarNode(SmsTrafficApiConfig::PARAM_PASSWORD)->isRequired()->end()
+                ->scalarNode(SmsTrafficApiConfig::PARAM_ORIGINATOR)->isRequired()->end()
+                ->scalarNode(SmsTrafficApiConfig::PARAM_CLIENT_CLASS)->defaultValue(Client::class)->end()
+                ->scalarNode(SmsTrafficApiConfig::PARAM_API_URL)->end()
+            ->end();
 
         return $treeBuilder;
     }

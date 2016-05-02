@@ -24,5 +24,7 @@ class DevGuruSmsTrafficApiExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->getDefinition('dev_guru_sms_traffic_api.config.sms_traffic_api')->setArguments([$config]);
     }
 }

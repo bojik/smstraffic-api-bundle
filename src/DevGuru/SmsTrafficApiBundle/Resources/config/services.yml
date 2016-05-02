@@ -1,4 +1,13 @@
+parameters:
+    dev_guru_sms_traffic_api.config.sms_traffic_api.class: DevGuru\SmsTrafficApiBundle\Config\SmsTrafficApiConfig
+    dev_guru_sms_traffic_api.client_factory.class: DevGuru\SmsTrafficApiBundle\ClientFactory
+
 services:
-#    dev_guru_sms_traffic_api.example:
-#        class: DevGuru\SmsTrafficApiBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    dev_guru_sms_traffic_api.config.sms_traffic_api:
+        class: '%dev_guru_sms_traffic_api.config.sms_traffic_api.class%'
+
+    dev_guru_sms_traffic_api.client_factory:
+        class: '%dev_guru_sms_traffic_api.client_factory.class%'
+        arguments: ['@dev_guru_sms_traffic_api.config.sms_traffic_api', '@logger']
+        tags:
+            - { name: 'monolog.logger', channel: 'smstraffic' }
